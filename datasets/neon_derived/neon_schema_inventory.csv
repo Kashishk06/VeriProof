@@ -1,0 +1,94 @@
+schema_name,table_name,column_name,data_type,is_primary_key,foreign_key_target,is_nullable,table_row_count,table_relevance,is_sensitive_field,extraction_eligibility,eligibility_reason
+public,audit_events,id,INTEGER,True,,False,5,audit_workflow,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,audit_events,event_type,VARCHAR(100),False,,False,5,audit_workflow,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,audit_events,user_id,INTEGER,False,users.id,True,5,audit_workflow,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,audit_events,organization_id,INTEGER,False,organizations.id,True,5,audit_workflow,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,audit_events,details,TEXT,False,,True,5,audit_workflow,False,REVIEW_REQUIRED,Audit payload may contain unvalidated PII
+public,audit_events,ip_address,VARCHAR(45),False,,True,5,general_operational,True,EXCLUDED_SENSITIVE,Contains sensitive identifier or security credential (ip_address)
+public,audit_events,created_at,TIMESTAMP,False,,False,5,audit_workflow,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,forensic_analyses,id,INTEGER,True,,False,0,verification_case,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,forensic_analyses,document_id,VARCHAR(36),False,registered_documents.id,False,0,verification_case,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,forensic_analyses,organization_id,INTEGER,False,organizations.id,False,0,verification_case,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,forensic_analyses,analyzed_by_user_id,INTEGER,False,users.id,True,0,verification_case,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,forensic_analyses,model_version,VARCHAR(64),False,,False,0,verification_case,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,forensic_analyses,risk_score,DOUBLE PRECISION,False,,False,0,verification_case,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,forensic_analyses,risk_level,VARCHAR(16),False,,False,0,verification_case,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,forensic_analyses,features,JSONB,False,,False,0,verification_case,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,forensic_analyses,reason_codes,JSONB,False,,False,0,verification_case,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,forensic_analyses,ml_signals,JSONB,False,,False,0,verification_case,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,forensic_analyses,hash_matches,BOOLEAN,False,,True,0,general_operational,True,EXCLUDED_SENSITIVE,Contains sensitive identifier or security credential (hash_matches)
+public,forensic_analyses,signature_valid,BOOLEAN,False,,True,0,identifier,False,ELIGIBLE_PSEUDONYMIZED,Internal identifier; must be pseudonymized
+public,forensic_analyses,created_at,TIMESTAMP,False,,False,0,verification_case,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,organization_documents,id,VARCHAR(36),True,,False,0,issuer_registry,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,organization_documents,organization_id,INTEGER,False,organizations.id,False,0,issuer_registry,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,organization_documents,document_type,VARCHAR(16),False,,False,0,issuer_registry,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,organization_documents,filename,VARCHAR(255),False,,False,0,issuer_registry,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,organization_documents,storage_key,VARCHAR(36),False,,False,0,general_operational,True,EXCLUDED_SENSITIVE,Contains sensitive identifier or security credential (storage_key)
+public,organization_documents,content_type,VARCHAR(100),False,,False,0,issuer_registry,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,organization_documents,size_bytes,INTEGER,False,,False,0,issuer_registry,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,organization_documents,sha256,VARCHAR(64),False,,False,0,issuer_registry,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,organization_documents,created_at,TIMESTAMP,False,,False,0,issuer_registry,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,organizations,id,INTEGER,True,,False,1,issuer_registry,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,organizations,name,VARCHAR(255),False,,False,1,issuer_registry,False,EXCLUDED_SENSITIVE,Organization contact/PII detail
+public,organizations,legal_name,VARCHAR(255),False,,True,1,issuer_registry,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,organizations,org_type,VARCHAR(100),False,,False,1,issuer_registry,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,organizations,registration_number,VARCHAR(100),False,,False,1,issuer_registry,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,organizations,tax_id,VARCHAR(100),False,,True,1,identifier,False,ELIGIBLE_PSEUDONYMIZED,Internal identifier; must be pseudonymized
+public,organizations,website,VARCHAR(255),False,,True,1,issuer_registry,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,organizations,official_email,VARCHAR(255),False,,False,1,general_operational,True,EXCLUDED_SENSITIVE,Contains sensitive identifier or security credential (official_email)
+public,organizations,address,VARCHAR(255),False,,True,1,general_operational,True,EXCLUDED_SENSITIVE,Contains sensitive identifier or security credential (address)
+public,organizations,city,VARCHAR(100),False,,True,1,issuer_registry,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,organizations,state,VARCHAR(100),False,,True,1,issuer_registry,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,organizations,country,VARCHAR(100),False,,True,1,issuer_registry,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,organizations,pin_code,VARCHAR(50),False,,True,1,general_operational,True,EXCLUDED_SENSITIVE,Contains sensitive identifier or security credential (pin_code)
+public,organizations,authorized_representative_name,VARCHAR(255),False,,False,1,general_operational,True,EXCLUDED_SENSITIVE,Contains sensitive identifier or security credential (authorized_representative_name)
+public,organizations,authorized_representative_role,VARCHAR(100),False,,True,1,general_operational,True,EXCLUDED_SENSITIVE,Contains sensitive identifier or security credential (authorized_representative_role)
+public,organizations,authorized_representative_email,VARCHAR(255),False,,True,1,general_operational,True,EXCLUDED_SENSITIVE,Contains sensitive identifier or security credential (authorized_representative_email)
+public,organizations,authorized_representative_phone,VARCHAR(50),False,,True,1,general_operational,True,EXCLUDED_SENSITIVE,Contains sensitive identifier or security credential (authorized_representative_phone)
+public,organizations,primary_document_url,VARCHAR(500),False,,True,1,issuer_registry,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,organizations,supporting_document_url,VARCHAR(500),False,,True,1,issuer_registry,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,organizations,status,VARCHAR(9),False,,False,1,issuer_registry,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,organizations,status_reason,TEXT,False,,True,1,issuer_registry,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,organizations,reviewed_by_id,INTEGER,False,users.id,True,1,issuer_registry,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,organizations,reviewed_at,TIMESTAMP,False,,True,1,issuer_registry,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,organizations,rejection_reason,TEXT,False,,True,1,issuer_registry,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,organizations,created_at,TIMESTAMP,False,,False,1,issuer_registry,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,organizations,updated_at,TIMESTAMP,False,,False,1,issuer_registry,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,registered_documents,id,VARCHAR(36),True,,False,0,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,registered_documents,public_verification_id,VARCHAR(64),False,,False,0,identifier,False,ELIGIBLE_PSEUDONYMIZED,Internal identifier; must be pseudonymized
+public,registered_documents,title,VARCHAR(255),False,,False,0,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,registered_documents,document_type,VARCHAR(100),False,,False,0,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,registered_documents,organization_id,INTEGER,False,organizations.id,False,0,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,registered_documents,issuer_user_id,INTEGER,False,users.id,False,0,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,registered_documents,recipient_name,VARCHAR(255),False,,True,0,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,registered_documents,recipient_identifier,VARCHAR(255),False,,True,0,identifier,False,ELIGIBLE_PSEUDONYMIZED,Internal identifier; must be pseudonymized
+public,registered_documents,recipient_email,VARCHAR(255),False,,True,0,general_operational,True,EXCLUDED_SENSITIVE,Contains sensitive identifier or security credential (recipient_email)
+public,registered_documents,issuer_notes,TEXT,False,,True,0,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,registered_documents,original_filename,VARCHAR(255),False,,False,0,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,registered_documents,storage_key,VARCHAR(36),False,,False,0,general_operational,True,EXCLUDED_SENSITIVE,Contains sensitive identifier or security credential (storage_key)
+public,registered_documents,content_type,VARCHAR(100),False,,False,0,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,registered_documents,size_bytes,INTEGER,False,,False,0,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,registered_documents,sha256_hash,VARCHAR(64),False,,False,0,general_operational,True,EXCLUDED_SENSITIVE,Contains sensitive identifier or security credential (sha256_hash)
+public,registered_documents,signature_algorithm,VARCHAR(50),False,,False,0,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,registered_documents,signature_value,TEXT,False,,False,0,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,registered_documents,signing_key_id,VARCHAR(100),False,,False,0,general_operational,True,EXCLUDED_SENSITIVE,Contains sensitive identifier or security credential (signing_key_id)
+public,registered_documents,signing_public_key,TEXT,False,,False,0,general_operational,True,EXCLUDED_SENSITIVE,Contains sensitive identifier or security credential (signing_public_key)
+public,registered_documents,signed_manifest,TEXT,False,,False,0,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,registered_documents,status,VARCHAR(16),False,,False,0,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,registered_documents,issue_date,DATE,False,,False,0,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,registered_documents,issued_at,TIMESTAMP,False,,False,0,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,registered_documents,expires_at,TIMESTAMP,False,,True,0,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,registered_documents,revoked_at,TIMESTAMP,False,,True,0,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,registered_documents,revocation_reason,TEXT,False,,True,0,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,registered_documents,version,INTEGER,False,,False,0,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,registered_documents,previous_version_id,VARCHAR(36),False,registered_documents.id,True,0,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,registered_documents,created_at,TIMESTAMP,False,,False,0,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,registered_documents,updated_at,TIMESTAMP,False,,False,0,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,users,id,INTEGER,True,,False,4,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,users,email,VARCHAR,False,,False,4,general_operational,True,EXCLUDED_SENSITIVE,Contains sensitive identifier or security credential (email)
+public,users,hashed_password,VARCHAR,False,,False,4,general_operational,True,EXCLUDED_SENSITIVE,Contains sensitive identifier or security credential (hashed_password)
+public,users,full_name,VARCHAR,False,,True,4,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,users,role,VARCHAR(11),False,,False,4,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,users,is_active,BOOLEAN,False,,True,4,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,users,organization_id,INTEGER,False,organizations.id,True,4,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute
+public,users,created_at,TIMESTAMP,False,,False,4,general_operational,False,ELIGIBLE,Safe non-sensitive metadata attribute

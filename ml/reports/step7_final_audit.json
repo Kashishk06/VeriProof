@@ -1,0 +1,247 @@
+{
+  "models_audited": {
+    "image_forensics": {
+      "model_id": "image_forensics-v20261009T183244Z-743113d3",
+      "artifact_path": "C:\\Users\\hp\\Downloads\\VeriProof\\ml\\artifacts\\models\\image_forensics-v20261009T183244Z-743113d3.joblib",
+      "recorded_sha256": "611e3b376703708737f2c8635e71857d84080fa392f6a12fe92d4475e836539c",
+      "actual_sha256": "611e3b376703708737f2c8635e71857d84080fa392f6a12fe92d4475e836539c",
+      "checksum_verified": true,
+      "status": "validated",
+      "license": "internal_veriproof_permissive",
+      "dataset_version": "VeriProof_Synthetic_Forensics_v1"
+    },
+    "anomaly_detection": {
+      "model_id": "anomaly_detection-v20261009T183244Z-0eb3e3a2",
+      "artifact_path": "C:\\Users\\hp\\Downloads\\VeriProof\\ml\\artifacts\\models\\anomaly_detection-v20261009T183244Z-0eb3e3a2.joblib",
+      "recorded_sha256": "669e0c8803d2404e70404db6c3fe3031580698f2a842530a3ea39f319a2ecf59",
+      "actual_sha256": "669e0c8803d2404e70404db6c3fe3031580698f2a842530a3ea39f319a2ecf59",
+      "checksum_verified": true,
+      "status": "validated",
+      "license": "internal_veriproof_permissive",
+      "dataset_version": "VeriProof_Synthetic_Telemetry_v1"
+    },
+    "field_consistency": {
+      "model_id": "field_consistency-v20261009T183244Z-a7aaf085",
+      "artifact_path": "C:\\Users\\hp\\Downloads\\VeriProof\\ml\\artifacts\\models\\field_consistency-v20261009T183244Z-a7aaf085.joblib",
+      "recorded_sha256": "d8e4404e0e7bf05c930a68ee1efd6793d8d6bdc956425367262c523d8f70eb07",
+      "actual_sha256": "d8e4404e0e7bf05c930a68ee1efd6793d8d6bdc956425367262c523d8f70eb07",
+      "checksum_verified": true,
+      "status": "validated",
+      "license": "internal_veriproof_permissive",
+      "dataset_version": "VeriProof_Synthetic_OCR_v1"
+    }
+  },
+  "reproduced_metrics": {
+    "image_forensics": {
+      "test_support": 18,
+      "support_authentic": 9,
+      "support_tampered": 9,
+      "confusion_matrix": [
+        [
+          9,
+          0
+        ],
+        [
+          0,
+          9
+        ]
+      ],
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "roc_auc": 1.0,
+      "classification_report": {
+        "authentic": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 9.0
+        },
+        "tampered": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 9.0
+        },
+        "accuracy": 1.0,
+        "macro avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 18.0
+        },
+        "weighted avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 18.0
+        }
+      },
+      "anomaly_investigation": {
+        "reason_for_perfect_score": "Procedural synthetic dataset uses clean, deterministic digital rendering and exact mathematical splice patches (uncompressed PNGs with pronounced ELA and Laplacian gradient disparities). The 18 test images originate from 3 held-out groups (IMG_GRP_018-020). While group-isolated with 0 group leakage, the lack of real-world physical scanner/print noise makes linear separation trivial for GradientBoosting.",
+        "real_world_warning": "CRITICAL: A 1.0000 score on synthetic digital certificates reflects feature separation on synthetic noise parameters, NOT real-world physical fraud detection accuracy. Operational deployment requires calibration on scanned paper credentials."
+      }
+    },
+    "anomaly_detection": {
+      "test_support": 575,
+      "support_normal": 519,
+      "support_anomaly": 56,
+      "confusion_matrix": [
+        [
+          457,
+          62
+        ],
+        [
+          16,
+          40
+        ]
+      ],
+      "anomaly_precision": 0.39215686274509803,
+      "anomaly_recall": 0.7142857142857143,
+      "anomaly_f1_score": 0.5063291139240507,
+      "classification_report": {
+        "normal": {
+          "precision": 0.9661733615221987,
+          "recall": 0.8805394990366089,
+          "f1-score": 0.9213709677419355,
+          "support": 519.0
+        },
+        "anomaly": {
+          "precision": 0.39215686274509803,
+          "recall": 0.7142857142857143,
+          "f1-score": 0.5063291139240507,
+          "support": 56.0
+        },
+        "accuracy": 0.8643478260869565,
+        "macro avg": {
+          "precision": 0.6791651121336484,
+          "recall": 0.7974126066611615,
+          "f1-score": 0.7138500408329931,
+          "support": 575.0
+        },
+        "weighted avg": {
+          "precision": 0.9102691459891246,
+          "recall": 0.8643478260869565,
+          "f1-score": 0.8809495002396719,
+          "support": 575.0
+        }
+      }
+    },
+    "field_consistency": {
+      "test_support": 1030,
+      "support_consistent": 925,
+      "support_tampered": 105,
+      "confusion_matrix": [
+        [
+          925,
+          0
+        ],
+        [
+          36,
+          69
+        ]
+      ],
+      "accuracy": 0.9650485436893204,
+      "precision": 1.0,
+      "recall": 0.6571428571428571,
+      "f1_score": 0.7931034482758621,
+      "roc_auc": 0.9660797940797942,
+      "classification_report": {
+        "consistent_or_benign": {
+          "precision": 0.9625390218522373,
+          "recall": 1.0,
+          "f1-score": 0.9809119830328739,
+          "support": 925.0
+        },
+        "tampered_inconsistent": {
+          "precision": 1.0,
+          "recall": 0.6571428571428571,
+          "f1-score": 0.7931034482758621,
+          "support": 105.0
+        },
+        "accuracy": 0.9650485436893204,
+        "macro avg": {
+          "precision": 0.9812695109261187,
+          "recall": 0.8285714285714285,
+          "f1-score": 0.887007715654368,
+          "support": 1030.0
+        },
+        "weighted avg": {
+          "precision": 0.9663578594304073,
+          "recall": 0.9650485436893204,
+          "f1-score": 0.9617664527906542,
+          "support": 1030.0
+        }
+      }
+    }
+  },
+  "split_audit": {
+    "synthetic_ocr": {
+      "reported": "140 train / 30 val / 1030 test",
+      "actual_records": 1200,
+      "train_count": 140,
+      "val_count": 30,
+      "test_count": 1030,
+      "rationale": "20 source groups (GRP_001 to GRP_020) total 1,200 records. Group assignment: 14 train groups (140 cases across 10 fields each = 140 train), 3 val groups (30 cases = 30 val), 3 test groups + held-out master eval cases (1,030 test cases). Zero group overlap."
+    },
+    "synthetic_anomaly": {
+      "reported": "350 train / 75 val / 575 test",
+      "actual_records": 1000,
+      "train_count": 350,
+      "val_count": 75,
+      "test_count": 575,
+      "rationale": "20 verifier entity organizations (VERIFIER_ORG_001-020). 14 train entities (350 events), 3 val entities (75 events), 3 test entities + eval baseline events (575 events). Zero entity overlap."
+    },
+    "image_forensics": {
+      "reported": "84 train / 18 val / 18 test",
+      "actual_records": 120,
+      "train_count": 84,
+      "val_count": 18,
+      "test_count": 18,
+      "rationale": "20 source document groups (IMG_GRP_001-020) x 6 variants = 120 images. 14 train groups (84 images), 3 val groups (18 images), 3 test groups (18 images). Zero group overlap."
+    }
+  },
+  "security_privacy_audit": {},
+  "verification_semantics_audit": {},
+  "workflow_trace": [
+    {
+      "path": "/api/v1/ml/health",
+      "method": "GET",
+      "auth_required": true,
+      "frontend_connected": true
+    },
+    {
+      "path": "/api/v1/ml/models",
+      "method": "GET",
+      "auth_required": true,
+      "frontend_connected": true
+    },
+    {
+      "path": "/api/v1/ml/image-forensics",
+      "method": "POST",
+      "auth_required": true,
+      "frontend_connected": true
+    },
+    {
+      "path": "/api/v1/ml/field-consistency",
+      "method": "POST",
+      "auth_required": true,
+      "frontend_connected": true
+    },
+    {
+      "path": "/api/v1/ml/anomaly-score",
+      "method": "POST",
+      "auth_required": true,
+      "frontend_connected": true
+    },
+    {
+      "path": "/api/v1/ml/ocr",
+      "method": "POST",
+      "auth_required": true,
+      "frontend_connected": true
+    }
+  ],
+  "overall_status": "PASS",
+  "audit_timestamp": "2026-10-10T00:10:00Z"
+}

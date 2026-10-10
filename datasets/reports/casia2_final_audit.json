@@ -1,0 +1,66 @@
+{
+  "audit_timestamp": "2026-10-09 22:24:16",
+  "overall_status": "FULL_AUDIT_PASSED",
+  "failures": [],
+  "checks": {
+    "check1_archive_sha256": {
+      "name": "Archive Existence & SHA-256",
+      "passed": true,
+      "archive_found": true,
+      "file_size_bytes": 2677393245,
+      "expected_sha256": "d9e6d648a683f4c4e4fa87067d9bd0790182769003b2805acd03af1b037ec9f5",
+      "calculated_sha256": "d9e6d648a683f4c4e4fa87067d9bd0790182769003b2805acd03af1b037ec9f5"
+    },
+    "check2_disk_counts": {
+      "name": "Disk File Recount",
+      "passed": true,
+      "au_images_count": 7491,
+      "tp_images_count": 5123,
+      "gt_masks_count": 5123,
+      "demo_images_count": 3,
+      "total_full_dataset_images": 12614
+    },
+    "check3_csv_integrity": {
+      "name": "CSV Inventory Parsing",
+      "passed": true,
+      "total_rows": 12617,
+      "unique_ids_count": 12617,
+      "broken_image_paths": 0,
+      "broken_mask_paths": 0,
+      "au_rows": 7491,
+      "tp_rows": 5123,
+      "demo_rows": 3,
+      "label_mismatches": 0
+    },
+    "check4_mapping_and_dimensions": {
+      "name": "Independent Mask Mapping & Dimensions",
+      "passed": true,
+      "tp_count": 5123,
+      "gt_count": 5123,
+      "perfect_mappings": 5123,
+      "missing_masks": 0,
+      "orphaned_masks": 0,
+      "dimension_mismatches": 0,
+      "unreadable_files": 0
+    },
+    "check5_baseline_preservation": {
+      "name": "Baseline Artifact Preservation",
+      "passed": true,
+      "casia2_gt_repo_zip_exists": true,
+      "casia2_gt_repo_zip_size": 483937,
+      "demo_images_found": [
+        "kaggle_example.jpg",
+        "resolution_mismatch.png",
+        "rotation_mismatch.png"
+      ]
+    },
+    "check6_provenance": {
+      "name": "Metadata & Provenance Audit",
+      "passed": true,
+      "metadata_json_exists": true,
+      "citations_documented": true,
+      "non_commercial_disclaimer": true,
+      "not_certificate_disclaimer": true
+    }
+  }
+}

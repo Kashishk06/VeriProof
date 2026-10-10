@@ -1,0 +1,6 @@
+# Optional dependencies for advanced AI/ML forensics
+opencv-python-headless>=4.9.0.80
+xgboost>=2.0.3
+scikit-learn>=1.4.0
+paddleocr>=2.7.0.3
+paddlepaddle>=2.6.0

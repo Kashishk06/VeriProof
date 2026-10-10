@@ -1,0 +1,106 @@
+{
+  "pipeline_name": "VeriProof Document Intelligence & Forensic Engine",
+  "version": "1.0.0",
+  "timestamp": "2026-10-10T00:05:00Z",
+  "status": "COMPLETE_FOR_VALIDATED_SCOPE",
+  "master_random_seed": 20261009,
+  "components": {
+    "dataset_registry": {
+      "manifest_path": "datasets/splits/master_split_manifest.csv",
+      "datasets_registered": 7,
+      "total_records_governed": 15266,
+      "group_leakage_detected": false
+    },
+    "trained_models": [
+      {
+        "task_type": "image_forensics",
+        "model_id": "image_forensics-v20261009T183244Z-743113d3",
+        "algorithm": "GradientBoostingClassifier",
+        "features": [
+          "aspect_ratio",
+          "color_channel_var_ratio",
+          "blur_laplacian_var",
+          "noise_snr_db",
+          "ela_mean_diff",
+          "ela_max_diff",
+          "ela_std_diff",
+          "ela_p95_diff",
+          "edge_density",
+          "resampling_indicator"
+        ],
+        "metrics": {
+          "validation_accuracy": 1.0,
+          "validation_precision": 1.0,
+          "validation_recall": 1.0,
+          "validation_f1": 1.0,
+          "test_accuracy": 1.0,
+          "test_precision": 1.0,
+          "test_recall": 1.0,
+          "test_f1": 1.0
+        },
+        "license_restriction": "internal_veriproof_permissive",
+        "status": "validated"
+      },
+      {
+        "task_type": "anomaly_detection",
+        "model_id": "anomaly_detection-v20261009T183244Z-0eb3e3a2",
+        "algorithm": "IsolationForest",
+        "features": [
+          "verification_requests_last_hour",
+          "consecutive_failed_checks",
+          "burst_request_rate_per_sec",
+          "time_of_day_anomaly_score",
+          "metadata_tampering_score"
+        ],
+        "metrics": {
+          "validation_anomaly_precision": 0.3846,
+          "validation_anomaly_recall": 1.0,
+          "test_anomaly_precision": 0.3922,
+          "test_anomaly_recall": 0.7143
+        },
+        "license_restriction": "internal_veriproof_permissive",
+        "status": "validated"
+      },
+      {
+        "task_type": "field_consistency",
+        "model_id": "field_consistency-v20261009T183244Z-a7aaf085",
+        "algorithm": "RandomForestClassifier",
+        "features": [
+          "similarity_score",
+          "ocr_confidence",
+          "is_roll_format_valid",
+          "length_diff_ratio"
+        ],
+        "metrics": {
+          "validation_accuracy": 1.0,
+          "test_accuracy": 0.965,
+          "test_precision": 1.0,
+          "test_recall": 0.6571,
+          "test_f1": 0.7931
+        },
+        "license_restriction": "internal_veriproof_permissive",
+        "status": "validated"
+      }
+    ],
+    "inference_services": [
+      "ImageForensicsService",
+      "FieldConsistencyService",
+      "AnomalyDetectionService",
+      "CryptographicVerificationService"
+    ],
+    "fastapi_endpoints": [
+      "GET /api/v1/ml/health",
+      "GET /api/v1/ml/models",
+      "POST /api/v1/ml/image-forensics",
+      "POST /api/v1/ml/ocr",
+      "POST /api/v1/ml/field-consistency",
+      "POST /api/v1/ml/anomaly-score"
+    ]
+  },
+  "test_suite": {
+    "total_tests_executed": 13,
+    "tests_passed": 13,
+    "tests_failed": 0,
+    "verdict": "PASSED"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "timestamp": "2026-10-09 22:11:20",
+  "inventory_rows": 12617,
+  "stats": {
+    "archive_name": "CASIA2.0_revised_corrected.zip",
+    "archive_size_bytes": 2677393245,
+    "archive_sha256": "d9e6d648a683f4c4e4fa87067d9bd0790182769003b2805acd03af1b037ec9f5",
+    "au_total": 7491,
+    "au_readable": 7491,
+    "au_unreadable": 0,
+    "tp_total": 5123,
+    "tp_readable": 5123,
+    "tp_unreadable": 0,
+    "gt_total": 5123,
+    "gt_readable": 5123,
+    "gt_unreadable": 0,
+    "tp_matched_mask": 5123,
+    "tp_missing_mask": 0,
+    "tp_dim_match": 5123,
+    "tp_dim_mismatch": 0,
+    "mismatches": [],
+    "missing_masks": [],
+    "unmapped_masks": [],
+    "mask_pixel_modes": {
+      "RGBA": 1081,
+      "L": 2458,
+      "RGB": 1582,
+      "LA": 2
+    },
+    "demo_baseline_records": 3
+  }
+}

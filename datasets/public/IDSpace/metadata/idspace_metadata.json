@@ -1,0 +1,20 @@
+{
+  "dataset": "IDSpace",
+  "source_url": "https://huggingface.co/datasets/cactuslab/IDSpace",
+  "author": "cactuslab",
+  "paper": "IDSpace: A Novel Document Generator for Identity Verification and Document Fraud Detection",
+  "license": "CC-BY-4.0",
+  "download_date": "2026-10-09",
+  "full_dataset_size_approx_GB": 123,
+  "download_strategy": "permitted_preview_subset (ALB_scan_preview.parquet)",
+  "subset_downloaded": "preview/scan/ALB.parquet",
+  "subset_size_bytes": 8081245,
+  "images_extracted_count": 30,
+  "categories_breakdown": {
+    "positive": 10,
+    "fraud_inpaint_and_rewrite": 10,
+    "fraud_crop_and_replace": 10
+  },
+  "note": "IDSpace is a European synthetic identity document dataset. Labels describe synthetic ID document fraud types. NOT Indian academic certificate data.",
+  "data_origin": "public_synthetic"
+}

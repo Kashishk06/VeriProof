@@ -1,0 +1,230 @@
+[
+  {
+    "model_id": "image_forensics-v20261009T182153Z-7187b815",
+    "version": "v20261009T182153Z-7187b815",
+    "task_type": "image_forensics",
+    "artifact_path": "C:\\Users\\hp\\Downloads\\VeriProof\\ml\\artifacts\\models\\image_forensics-v20261009T182153Z-7187b815.joblib",
+    "artifact_filename": "image_forensics-v20261009T182153Z-7187b815.joblib",
+    "sha256_checksum": "165630fa3b6d4e75399caede66810a26d377c155a5af617406a020de5e33c8c2",
+    "dataset_version": "VeriProof_Synthetic_Forensics_v1",
+    "feature_names": [
+      "aspect_ratio",
+      "color_channel_var_ratio",
+      "blur_laplacian_var",
+      "noise_snr_db",
+      "ela_mean_diff",
+      "ela_max_diff",
+      "ela_std_diff",
+      "ela_p95_diff",
+      "edge_density",
+      "resampling_indicator"
+    ],
+    "metrics": {
+      "validation_accuracy": 1.0,
+      "validation_precision": 1.0,
+      "validation_recall": 1.0,
+      "validation_f1": 1.0,
+      "validation_roc_auc": 1.0,
+      "train_samples": 84,
+      "val_samples": 18,
+      "training_duration_sec": 23.08
+    },
+    "config": {
+      "enabled": true,
+      "model_type": "gradient_boosting_forensic_classifier",
+      "feature_extractor": "ela_noise_texture",
+      "hyperparameters": {
+        "n_estimators": 100,
+        "max_depth": 5,
+        "learning_rate": 0.08,
+        "random_state": 20261009
+      },
+      "decision_threshold": 0.5,
+      "ela_quality": 90,
+      "max_image_dimension": 2048,
+      "localization_enabled": true,
+      "localization_threshold": 0.4
+    },
+    "license_restriction": "internal_veriproof_permissive",
+    "status": "validated",
+    "created_at": "2026-10-09T18:21:53.208583+00:00",
+    "notes": "Gradient boosting classifier trained on ELA, Laplacian sharpness, noise SNR, and color gradient features."
+  },
+  {
+    "model_id": "anomaly_detection-v20261009T182153Z-1d9d3b30",
+    "version": "v20261009T182153Z-1d9d3b30",
+    "task_type": "anomaly_detection",
+    "artifact_path": "C:\\Users\\hp\\Downloads\\VeriProof\\ml\\artifacts\\models\\anomaly_detection-v20261009T182153Z-1d9d3b30.joblib",
+    "artifact_filename": "anomaly_detection-v20261009T182153Z-1d9d3b30.joblib",
+    "sha256_checksum": "8c388f6ddb2e94224545ab7c8d2c22513825e38b6801556d5b621d76db955c29",
+    "dataset_version": "VeriProof_Synthetic_Telemetry_v1",
+    "feature_names": [
+      "verification_requests_last_hour",
+      "consecutive_failed_checks",
+      "burst_request_rate_per_sec",
+      "time_of_day_anomaly_score",
+      "metadata_tampering_score"
+    ],
+    "metrics": {
+      "validation_anomaly_precision": 0.3846,
+      "validation_anomaly_recall": 1.0,
+      "validation_anomaly_f1": 0.5556,
+      "train_samples": 309,
+      "val_samples": 75,
+      "training_duration_sec": 0.53
+    },
+    "config": {
+      "enabled": true,
+      "model_type": "isolation_forest_anomaly_scorer",
+      "hyperparameters": {
+        "n_estimators": 100,
+        "contamination": 0.08,
+        "random_state": 20261009
+      },
+      "features": [
+        "verification_requests_last_hour",
+        "consecutive_failed_checks",
+        "burst_request_rate_per_sec",
+        "time_of_day_anomaly_score",
+        "metadata_tampering_score"
+      ],
+      "anomaly_threshold": -0.15
+    },
+    "license_restriction": "internal_veriproof_permissive",
+    "status": "validated",
+    "created_at": "2026-10-09T18:21:53.888966+00:00",
+    "notes": "Isolation Forest anomaly detector for verification burst velocity and authentication failure spikes."
+  },
+  {
+    "model_id": "field_consistency-v20261009T182154Z-c45540f4",
+    "version": "v20261009T182154Z-c45540f4",
+    "task_type": "field_consistency",
+    "artifact_path": "C:\\Users\\hp\\Downloads\\VeriProof\\ml\\artifacts\\models\\field_consistency-v20261009T182154Z-c45540f4.joblib",
+    "artifact_filename": "field_consistency-v20261009T182154Z-c45540f4.joblib",
+    "sha256_checksum": "2d95f3e52455ebc3137c6bee838644483cd326a90e0349db251609df579cdf6c",
+    "dataset_version": "VeriProof_Synthetic_OCR_v1",
+    "feature_names": [
+      "similarity_score",
+      "ocr_confidence",
+      "is_roll_format_valid",
+      "length_diff_ratio"
+    ],
+    "metrics": {
+      "validation_accuracy": 1.0,
+      "validation_precision": 1.0,
+      "validation_recall": 1.0,
+      "validation_f1": 1.0,
+      "train_samples": 140,
+      "val_samples": 30,
+      "training_duration_sec": 0.21
+    },
+    "config": {
+      "enabled": true,
+      "model_type": "rule_augmented_consistency_classifier",
+      "hyperparameters": {
+        "fuzzy_match_threshold": 0.82,
+        "date_format_strict": true,
+        "cgpa_tolerance": 0.05
+      },
+      "decision_threshold": 0.65
+    },
+    "license_restriction": "internal_veriproof_permissive",
+    "status": "validated",
+    "created_at": "2026-10-09T18:21:54.155709+00:00",
+    "notes": "Random Forest classifier separating benign OCR character substitutions from deliberate document forgeries."
+  },
+  {
+    "model_id": "image_forensics-v20261009T183244Z-743113d3",
+    "version": "v20261009T183244Z-743113d3",
+    "task_type": "image_forensics",
+    "artifact_path": "C:\\Users\\hp\\Downloads\\VeriProof\\ml\\artifacts\\models\\image_forensics-v20261009T183244Z-743113d3.joblib",
+    "artifact_filename": "image_forensics-v20261009T183244Z-743113d3.joblib",
+    "sha256_checksum": "611e3b376703708737f2c8635e71857d84080fa392f6a12fe92d4475e836539c",
+    "dataset_version": "VeriProof_Synthetic_Forensics_v1",
+    "feature_names": [
+      "aspect_ratio",
+      "color_channel_var_ratio",
+      "blur_laplacian_var",
+      "noise_snr_db",
+      "ela_mean_diff",
+      "ela_max_diff",
+      "ela_std_diff",
+      "ela_p95_diff",
+      "edge_density",
+      "resampling_indicator"
+    ],
+    "metrics": {
+      "validation_accuracy": 1.0,
+      "validation_precision": 1.0,
+      "validation_recall": 1.0,
+      "validation_f1": 1.0,
+      "validation_roc_auc": 1.0,
+      "train_samples": 84,
+      "val_samples": 18,
+      "training_duration_sec": 22.74
+    },
+    "config": {},
+    "license_restriction": "internal_veriproof_permissive",
+    "status": "validated",
+    "created_at": "2026-10-09T18:32:44.069634+00:00",
+    "notes": "Gradient boosting classifier trained on ELA, Laplacian sharpness, noise SNR, and color gradient features."
+  },
+  {
+    "model_id": "anomaly_detection-v20261009T183244Z-0eb3e3a2",
+    "version": "v20261009T183244Z-0eb3e3a2",
+    "task_type": "anomaly_detection",
+    "artifact_path": "C:\\Users\\hp\\Downloads\\VeriProof\\ml\\artifacts\\models\\anomaly_detection-v20261009T183244Z-0eb3e3a2.joblib",
+    "artifact_filename": "anomaly_detection-v20261009T183244Z-0eb3e3a2.joblib",
+    "sha256_checksum": "669e0c8803d2404e70404db6c3fe3031580698f2a842530a3ea39f319a2ecf59",
+    "dataset_version": "VeriProof_Synthetic_Telemetry_v1",
+    "feature_names": [
+      "verification_requests_last_hour",
+      "consecutive_failed_checks",
+      "burst_request_rate_per_sec",
+      "time_of_day_anomaly_score",
+      "metadata_tampering_score"
+    ],
+    "metrics": {
+      "validation_anomaly_precision": 0.3846,
+      "validation_anomaly_recall": 1.0,
+      "validation_anomaly_f1": 0.5556,
+      "train_samples": 309,
+      "val_samples": 75,
+      "training_duration_sec": 0.45
+    },
+    "config": {},
+    "license_restriction": "internal_veriproof_permissive",
+    "status": "validated",
+    "created_at": "2026-10-09T18:32:44.703395+00:00",
+    "notes": "Isolation Forest anomaly detector for verification burst velocity and authentication failure spikes."
+  },
+  {
+    "model_id": "field_consistency-v20261009T183244Z-a7aaf085",
+    "version": "v20261009T183244Z-a7aaf085",
+    "task_type": "field_consistency",
+    "artifact_path": "C:\\Users\\hp\\Downloads\\VeriProof\\ml\\artifacts\\models\\field_consistency-v20261009T183244Z-a7aaf085.joblib",
+    "artifact_filename": "field_consistency-v20261009T183244Z-a7aaf085.joblib",
+    "sha256_checksum": "d8e4404e0e7bf05c930a68ee1efd6793d8d6bdc956425367262c523d8f70eb07",
+    "dataset_version": "VeriProof_Synthetic_OCR_v1",
+    "feature_names": [
+      "similarity_score",
+      "ocr_confidence",
+      "is_roll_format_valid",
+      "length_diff_ratio"
+    ],
+    "metrics": {
+      "validation_accuracy": 1.0,
+      "validation_precision": 1.0,
+      "validation_recall": 1.0,
+      "validation_f1": 1.0,
+      "train_samples": 140,
+      "val_samples": 30,
+      "training_duration_sec": 0.24
+    },
+    "config": {},
+    "license_restriction": "internal_veriproof_permissive",
+    "status": "validated",
+    "created_at": "2026-10-09T18:32:44.990982+00:00",
+    "notes": "Random Forest classifier separating benign OCR character substitutions from deliberate document forgeries."
+  }
+]

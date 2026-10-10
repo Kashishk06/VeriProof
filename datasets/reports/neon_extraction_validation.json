@@ -1,0 +1,55 @@
+{
+  "timestamp": "2026-10-09 22:43:30",
+  "database_type": "Neon Serverless PostgreSQL",
+  "access_mode": "TRANSACTION READ ONLY",
+  "tables_inspected": 6,
+  "table_counts": {
+    "organizations": 1,
+    "audit_events_aggregates": 5,
+    "registered_documents": 0,
+    "forensic_analyses": 0,
+    "organization_documents": 0,
+    "users": 4
+  },
+  "exported_files": {
+    "neon_schema_inventory.csv": {
+      "status": "EXPORTED",
+      "records": 93,
+      "purpose": "Full schema metadata & column classification"
+    },
+    "issuer_status_cases.csv": {
+      "status": "EXPORTED",
+      "records": 1,
+      "purpose": "Sanitized issuer status tracking"
+    },
+    "verification_history_aggregates.csv": {
+      "status": "EXPORTED",
+      "records": 5,
+      "purpose": "Coarse hourly audit event aggregate metrics"
+    },
+    "registry_verification_cases.csv": {
+      "status": "NOT_EXPORTED",
+      "records": 0,
+      "reason": "registered_documents table contains 0 records on Neon; no certificates have been issued yet. Placeholder records strictly prohibited."
+    },
+    "forensic_analysis_cases.csv": {
+      "status": "NOT_EXPORTED",
+      "records": 0,
+      "reason": "forensic_analyses table contains 0 records on Neon; no automated forensic scans have been persisted yet."
+    }
+  },
+  "privacy_and_security_audit": {
+    "pii_leakage_detected": false,
+    "credentials_excluded": true,
+    "passwords_and_hashes_excluded": true,
+    "raw_documents_excluded": true,
+    "ip_addresses_excluded": true,
+    "emails_and_names_excluded": true,
+    "pseudonymization_applied": true
+  },
+  "data_quality_findings": [
+    "Database is at cold-start / early deployment phase with valid administrative seeding (1 organization, 4 users, 5 audit events).",
+    "Document registry and forensic analysis tables are unpopulated (0 rows); downstream training on production registry data must await real operational traffic."
+  ],
+  "overall_status": "EXTRACTION_AND_VALIDATION_PASSED"
+}

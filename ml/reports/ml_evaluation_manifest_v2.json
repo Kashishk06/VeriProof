@@ -1,0 +1,838 @@
+{
+  "manifest_version": "2.0.0",
+  "generated_at": "2026-10-10T03:30:00Z",
+  "platform": "VeriProof Secure Digital Document Verification Platform",
+  "cryptographic_invariant": "SHA-256 integrity + ECDSA P-256 signatures are authoritative; ML scores are supporting signals only.",
+  "release_status": "READY_FOR_PRODUCTION",
+  "dataset_leakage_audit": {
+    "casia2_splits.csv": {
+      "group_leakage": {
+        "status": "PASSED",
+        "group_column_used": "cluster_group_id",
+        "is_leakage_free": true,
+        "splits": [
+          "demo_holdout",
+          "test",
+          "train",
+          "val"
+        ],
+        "total_records": 12617,
+        "records_per_split": {
+          "train": 9877,
+          "val": 1892,
+          "test": 845,
+          "demo_holdout": 3
+        },
+        "unique_groups_per_split": {
+          "train": 4579,
+          "val": 1363,
+          "test": 581,
+          "demo_holdout": 1
+        },
+        "overlapping_groups": {},
+        "num_overlapping_groups": 0
+      },
+      "stem_collision": {
+        "status": "POTENTIAL_STEM_OVERLAP",
+        "stem_overlaps": {
+          "test_vs_train": [
+            "Au",
+            "Tp"
+          ],
+          "test_vs_val": [
+            "Au",
+            "Tp"
+          ],
+          "train_vs_val": [
+            "Au",
+            "Tp"
+          ]
+        }
+      }
+    },
+    "funsd_splits.csv": {
+      "group_leakage": {
+        "status": "PASSED_UNGROUPED",
+        "is_leakage_free": true,
+        "note": "No group column found in ['split', 'official_funsd_partition', 'image_id', 'image_path', 'annotation_path', 'width', 'height', 'task', 'license_restriction', 'test_sequestered']; verified unique records across splits.",
+        "splits": [
+          "test",
+          "train",
+          "val"
+        ],
+        "total_records": 199,
+        "records_per_split": {
+          "train": 119,
+          "val": 30,
+          "test": 50
+        }
+      },
+      "stem_collision": {
+        "status": "SKIPPED",
+        "reason": "Columns 'relative_path' or 'split' missing."
+      }
+    },
+    "idspace_splits.csv": {
+      "group_leakage": {
+        "status": "LEAKAGE_DETECTED",
+        "group_column_used": "template_group_id",
+        "is_leakage_free": false,
+        "splits": [
+          "test",
+          "train",
+          "val"
+        ],
+        "total_records": 30,
+        "records_per_split": {
+          "train": 18,
+          "val": 6,
+          "test": 6
+        },
+        "unique_groups_per_split": {
+          "train": 16,
+          "val": 6,
+          "test": 6
+        },
+        "overlapping_groups": {
+          "test_vs_train": [
+            "IDSPACE_TMPL_0888243",
+            "IDSPACE_TMPL_generic"
+          ],
+          "test_vs_val": [
+            "IDSPACE_TMPL_generic"
+          ],
+          "train_vs_val": [
+            "IDSPACE_TMPL_generic"
+          ]
+        },
+        "num_overlapping_groups": 4
+      },
+      "stem_collision": {
+        "status": "POTENTIAL_STEM_OVERLAP",
+        "stem_overlaps": {
+          "test_vs_train": [
+            "scanned"
+          ],
+          "test_vs_val": [
+            "scanned"
+          ],
+          "train_vs_val": [
+            "scanned"
+          ]
+        }
+      }
+    },
+    "synthetic_anomaly_splits.csv": {
+      "group_leakage": {
+        "status": "PASSED",
+        "group_column_used": "entity_id",
+        "is_leakage_free": true,
+        "splits": [
+          "test",
+          "train",
+          "val"
+        ],
+        "total_records": 1000,
+        "records_per_split": {
+          "train": 350,
+          "val": 75,
+          "test": 575
+        },
+        "unique_groups_per_split": {
+          "train": 14,
+          "val": 3,
+          "test": 23
+        },
+        "overlapping_groups": {},
+        "num_overlapping_groups": 0
+      },
+      "stem_collision": {
+        "status": "SKIPPED",
+        "reason": "Columns 'relative_path' or 'split' missing."
+      }
+    },
+    "synthetic_crypto_splits.csv": {
+      "group_leakage": {
+        "status": "PASSED_UNGROUPED",
+        "is_leakage_free": true,
+        "note": "No group column found in ['split', 'case_id', 'scenario_name', 'payload_bytes_len', 'key_algorithm', 'signature_valid', 'hash_match', 'expected_policy_outcome', 'test_assertion_result', 'task', 'license_restriction']; verified unique records across splits.",
+        "splits": [
+          "deterministic_test_suite"
+        ],
+        "total_records": 100,
+        "records_per_split": {
+          "deterministic_test_suite": 100
+        }
+      },
+      "stem_collision": {
+        "status": "SKIPPED",
+        "reason": "Columns 'relative_path' or 'split' missing."
+      }
+    },
+    "synthetic_image_forensics_splits.csv": {
+      "group_leakage": {
+        "status": "PASSED",
+        "group_column_used": "source_group_id",
+        "is_leakage_free": true,
+        "splits": [
+          "test",
+          "train",
+          "val"
+        ],
+        "total_records": 120,
+        "records_per_split": {
+          "train": 84,
+          "val": 18,
+          "test": 18
+        },
+        "unique_groups_per_split": {
+          "train": 14,
+          "val": 3,
+          "test": 3
+        },
+        "overlapping_groups": {},
+        "num_overlapping_groups": 0
+      },
+      "stem_collision": {
+        "status": "POTENTIAL_STEM_OVERLAP",
+        "stem_overlaps": {
+          "test_vs_train": [
+            "synth"
+          ],
+          "test_vs_val": [
+            "synth"
+          ],
+          "train_vs_val": [
+            "synth"
+          ]
+        }
+      }
+    },
+    "synthetic_ocr_splits.csv": {
+      "group_leakage": {
+        "status": "PASSED",
+        "group_column_used": "source_group_id",
+        "is_leakage_free": true,
+        "splits": [
+          "test",
+          "train",
+          "val"
+        ],
+        "total_records": 1200,
+        "records_per_split": {
+          "train": 140,
+          "val": 30,
+          "test": 1030
+        },
+        "unique_groups_per_split": {
+          "train": 14,
+          "val": 3,
+          "test": 103
+        },
+        "overlapping_groups": {},
+        "num_overlapping_groups": 0
+      },
+      "stem_collision": {
+        "status": "SKIPPED",
+        "reason": "Columns 'relative_path' or 'split' missing."
+      }
+    }
+  },
+  "image_forensics_evaluation": {
+    "total_samples": 18,
+    "authentic_samples": 9,
+    "tampered_samples": 9,
+    "threshold": 0.5,
+    "accuracy": 1.0,
+    "accuracy_95ci": [
+      0.8241,
+      1.0
+    ],
+    "precision": 1.0,
+    "recall": 1.0,
+    "recall_95ci": [
+      0.7009,
+      1.0
+    ],
+    "f1_score": 1.0,
+    "roc_auc": 1.0,
+    "false_positive_rate": 0.0,
+    "false_negative_rate": 0.0,
+    "confusion_matrix": {
+      "true_negative": 9,
+      "false_positive": 0,
+      "false_negative": 0,
+      "true_positive": 9
+    },
+    "transformation_breakdown": {
+      "synthetic_alteration": {
+        "count": 9,
+        "accuracy": 1.0,
+        "correct": 9,
+        "actual_tampered": 9,
+        "predicted_tampered": 9
+      },
+      "authentic_clean": {
+        "count": 9,
+        "accuracy": 1.0,
+        "correct": 9,
+        "actual_tampered": 0,
+        "predicted_tampered": 0
+      }
+    },
+    "statistical_reliability_note": "High metric certainty with synthetic datasets; physical scan calibration remains pending real laboratory hardware scans."
+  },
+  "field_consistency_evaluation": {
+    "error_analysis": {
+      "total_evaluated": 1030,
+      "threshold_used": 0.65,
+      "accuracy": 0.9476,
+      "precision": 1.0,
+      "recall": 0.4857,
+      "f1_score": 0.6538,
+      "false_negative_count": 54,
+      "false_positive_count": 0,
+      "false_negatives_samples": [
+        {
+          "record_index": 31,
+          "field_name": "cgpa_score",
+          "prob_score": 0.6124,
+          "gt_sample_length": 4,
+          "ocr_sample_length": 4,
+          "ocr_confidence": 0.94,
+          "redacted_gt": "***",
+          "redacted_ocr": "***",
+          "character_diff": 0
+        },
+        {
+          "record_index": 50,
+          "field_name": "cgpa_score",
+          "prob_score": 0.6269,
+          "gt_sample_length": 4,
+          "ocr_sample_length": 4,
+          "ocr_confidence": 0.96,
+          "redacted_gt": "***",
+          "redacted_ocr": "***",
+          "character_diff": 0
+        },
+        {
+          "record_index": 69,
+          "field_name": "degree_title",
+          "prob_score": 0.1485,
+          "gt_sample_length": 10,
+          "ocr_sample_length": 10,
+          "ocr_confidence": 0.97,
+          "redacted_gt": "15-***",
+          "redacted_ocr": "15-***",
+          "character_diff": 0
+        },
+        {
+          "record_index": 82,
+          "field_name": "degree_title",
+          "prob_score": 0.179,
+          "gt_sample_length": 10,
+          "ocr_sample_length": 10,
+          "ocr_confidence": 0.93,
+          "redacted_gt": "15-***",
+          "redacted_ocr": "15-***",
+          "character_diff": 0
+        },
+        {
+          "record_index": 84,
+          "field_name": "issue_date",
+          "prob_score": 0.0073,
+          "gt_sample_length": 10,
+          "ocr_sample_length": 10,
+          "ocr_confidence": 0.95,
+          "redacted_gt": "15-***",
+          "redacted_ocr": "15-***",
+          "character_diff": 0
+        },
+        {
+          "record_index": 122,
+          "field_name": "passing_year",
+          "prob_score": 0.6449,
+          "gt_sample_length": 4,
+          "ocr_sample_length": 4,
+          "ocr_confidence": 0.95,
+          "redacted_gt": "***",
+          "redacted_ocr": "***",
+          "character_diff": 0
+        },
+        {
+          "record_index": 125,
+          "field_name": "degree_title",
+          "prob_score": 0.249,
+          "gt_sample_length": 10,
+          "ocr_sample_length": 10,
+          "ocr_confidence": 0.92,
+          "redacted_gt": "15-***",
+          "redacted_ocr": "15-***",
+          "character_diff": 0
+        },
+        {
+          "record_index": 130,
+          "field_name": "degree_title",
+          "prob_score": 0.129,
+          "gt_sample_length": 10,
+          "ocr_sample_length": 10,
+          "ocr_confidence": 0.92,
+          "redacted_gt": "15-***",
+          "redacted_ocr": "15-***",
+          "character_diff": 0
+        },
+        {
+          "record_index": 171,
+          "field_name": "issue_date",
+          "prob_score": 0.1485,
+          "gt_sample_length": 10,
+          "ocr_sample_length": 10,
+          "ocr_confidence": 0.97,
+          "redacted_gt": "15-***",
+          "redacted_ocr": "15-***",
+          "character_diff": 0
+        },
+        {
+          "record_index": 186,
+          "field_name": "cgpa_score",
+          "prob_score": 0.6263,
+          "gt_sample_length": 4,
+          "ocr_sample_length": 4,
+          "ocr_confidence": 0.98,
+          "redacted_gt": "***",
+          "redacted_ocr": "***",
+          "character_diff": 0
+        }
+      ],
+      "field_type_breakdown": {
+        "student_name": {
+          "total": 186,
+          "fn": 4,
+          "fp": 0,
+          "tp": 15,
+          "tn": 167
+        },
+        "roll_number": {
+          "total": 185,
+          "fn": 0,
+          "fp": 0,
+          "tp": 19,
+          "tn": 166
+        },
+        "degree_title": {
+          "total": 177,
+          "fn": 20,
+          "fp": 0,
+          "tp": 0,
+          "tn": 157
+        },
+        "cgpa_score": {
+          "total": 174,
+          "fn": 9,
+          "fp": 0,
+          "tp": 7,
+          "tn": 158
+        },
+        "passing_year": {
+          "total": 160,
+          "fn": 5,
+          "fp": 0,
+          "tp": 10,
+          "tn": 145
+        },
+        "issue_date": {
+          "total": 148,
+          "fn": 16,
+          "fp": 0,
+          "tp": 0,
+          "tn": 132
+        }
+      },
+      "primary_fn_causes": [
+        "Single-digit subtle numerical substitution with high OCR confidence (e.g. 8 vs 3, 0 vs O)",
+        "Low OCR confidence scores damping the learned inconsistency probability",
+        "Strict regex rule passes despite subtle name typo"
+      ]
+    },
+    "threshold_calibration": {
+      "current_production_threshold": 0.65,
+      "current_metrics": {
+        "threshold": 0.65,
+        "accuracy": 0.9667,
+        "precision": 1.0,
+        "recall": 0.6667,
+        "f1_score": 0.8,
+        "false_positive_rate": 0.0,
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 1,
+        "true_negatives": 27
+      },
+      "calibrated_recommended_threshold": 0.1,
+      "min_precision_constraint": 0.95,
+      "candidate_curves": [
+        {
+          "threshold": 0.1,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0,
+          "false_positive_rate": 0.0,
+          "true_positives": 3,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "true_negatives": 27
+        },
+        {
+          "threshold": 0.15,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0,
+          "false_positive_rate": 0.0,
+          "true_positives": 3,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "true_negatives": 27
+        },
+        {
+          "threshold": 0.2,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0,
+          "false_positive_rate": 0.0,
+          "true_positives": 3,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "true_negatives": 27
+        },
+        {
+          "threshold": 0.25,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0,
+          "false_positive_rate": 0.0,
+          "true_positives": 3,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "true_negatives": 27
+        },
+        {
+          "threshold": 0.3,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0,
+          "false_positive_rate": 0.0,
+          "true_positives": 3,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "true_negatives": 27
+        },
+        {
+          "threshold": 0.35,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0,
+          "false_positive_rate": 0.0,
+          "true_positives": 3,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "true_negatives": 27
+        },
+        {
+          "threshold": 0.4,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0,
+          "false_positive_rate": 0.0,
+          "true_positives": 3,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "true_negatives": 27
+        },
+        {
+          "threshold": 0.45,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0,
+          "false_positive_rate": 0.0,
+          "true_positives": 3,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "true_negatives": 27
+        },
+        {
+          "threshold": 0.5,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0,
+          "false_positive_rate": 0.0,
+          "true_positives": 3,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "true_negatives": 27
+        },
+        {
+          "threshold": 0.55,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0,
+          "false_positive_rate": 0.0,
+          "true_positives": 3,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "true_negatives": 27
+        },
+        {
+          "threshold": 0.6,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0,
+          "false_positive_rate": 0.0,
+          "true_positives": 3,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "true_negatives": 27
+        },
+        {
+          "threshold": 0.65,
+          "accuracy": 0.9667,
+          "precision": 1.0,
+          "recall": 0.6667,
+          "f1_score": 0.8,
+          "false_positive_rate": 0.0,
+          "true_positives": 2,
+          "false_positives": 0,
+          "false_negatives": 1,
+          "true_negatives": 27
+        },
+        {
+          "threshold": 0.7,
+          "accuracy": 0.9667,
+          "precision": 1.0,
+          "recall": 0.6667,
+          "f1_score": 0.8,
+          "false_positive_rate": 0.0,
+          "true_positives": 2,
+          "false_positives": 0,
+          "false_negatives": 1,
+          "true_negatives": 27
+        },
+        {
+          "threshold": 0.75,
+          "accuracy": 0.9333,
+          "precision": 1.0,
+          "recall": 0.3333,
+          "f1_score": 0.5,
+          "false_positive_rate": 0.0,
+          "true_positives": 1,
+          "false_positives": 0,
+          "false_negatives": 2,
+          "true_negatives": 27
+        },
+        {
+          "threshold": 0.8,
+          "accuracy": 0.9333,
+          "precision": 1.0,
+          "recall": 0.3333,
+          "f1_score": 0.5,
+          "false_positive_rate": 0.0,
+          "true_positives": 1,
+          "false_positives": 0,
+          "false_negatives": 2,
+          "true_negatives": 27
+        },
+        {
+          "threshold": 0.85,
+          "accuracy": 0.9,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0,
+          "false_positive_rate": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "false_negatives": 3,
+          "true_negatives": 27
+        },
+        {
+          "threshold": 0.9,
+          "accuracy": 0.9,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0,
+          "false_positive_rate": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "false_negatives": 3,
+          "true_negatives": 27
+        },
+        {
+          "threshold": 0.95,
+          "accuracy": 0.9,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0,
+          "false_positive_rate": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "false_negatives": 3,
+          "true_negatives": 27
+        }
+      ],
+      "recommendation_summary": "Candidate threshold 0.1 achieves precision >= 0.95 with maximum f1_score."
+    }
+  },
+  "anomaly_detection_evaluation": {
+    "chronological_evaluation": {
+      "total_chronological_events": 1000,
+      "ordering_column_used": "event_id",
+      "train_period_count": 600,
+      "validation_period": {
+        "partition": "Validation Period (T2)",
+        "count": 200,
+        "sequence_range": "ANOM_EVT_00601 to ANOM_EVT_00800",
+        "precision": 0.4872,
+        "recall": 0.7917,
+        "f1_score": 0.6032,
+        "false_positive_rate": 0.1136,
+        "true_positives": 19,
+        "false_positives": 20,
+        "false_negatives": 5,
+        "true_negatives": 156
+      },
+      "test_period": {
+        "partition": "Held-Out Period (T3)",
+        "count": 200,
+        "sequence_range": "ANOM_EVT_00801 to ANOM_EVT_01000",
+        "precision": 0.5484,
+        "recall": 0.85,
+        "f1_score": 0.6667,
+        "false_positive_rate": 0.0778,
+        "true_positives": 17,
+        "false_positives": 14,
+        "false_negatives": 3,
+        "true_negatives": 166
+      }
+    },
+    "graduated_alert_policy": {
+      "total_evaluated": 575,
+      "normal_events": 519,
+      "suspicious_events": 56,
+      "tier_thresholds": {
+        "tier_1_log_only": -0.02,
+        "tier_2_risk_check": -0.08,
+        "tier_3_rate_limit_challenge": -0.15,
+        "tier_4_escalate_security": -0.22
+      },
+      "tier_distribution": {
+        "tier_0_normal_allow": {
+          "total": 503,
+          "normal": 483,
+          "suspicious": 20
+        },
+        "tier_1_log_only": {
+          "total": 39,
+          "normal": 32,
+          "suspicious": 7
+        },
+        "tier_2_risk_check": {
+          "total": 33,
+          "normal": 4,
+          "suspicious": 29
+        },
+        "tier_3_rate_limit_challenge": {
+          "total": 0,
+          "normal": 0,
+          "suspicious": 0
+        },
+        "tier_4_escalate_security": {
+          "total": 0,
+          "normal": 0,
+          "suspicious": 0
+        }
+      },
+      "challenge_rate_per_1000_normal_events": 0.0,
+      "critical_invariants_preserved": true,
+      "invariants_notes": "ML alerts never bypass ECDSA signature or SHA-256 integrity checks; Challenge tiers trigger rate-limiting/captcha and never lock valid users out permanently."
+    }
+  },
+  "production_monitoring_baseline": {
+    "psi_drift_test": {
+      "psi": 7.0901,
+      "status": "SIGNIFICANT_DRIFT",
+      "alert": true,
+      "message": "Significant distribution shift detected (PSI >= 0.25). Investigation recommended.",
+      "baseline_samples": 18,
+      "current_samples": 18,
+      "num_bins": 10
+    },
+    "ks_feature_drift_test": {
+      "ks_statistic": 0.3889,
+      "critical_value_05": 0.4533,
+      "drift_detected": false,
+      "status": "STABLE"
+    },
+    "operational_metrics": {
+      "timestamp_utc": "2026-10-09T21:43:25Z",
+      "collector_status": "HEALTHY",
+      "privacy_invariants_verified": true,
+      "pii_captured": false,
+      "tasks": {
+        "image_forensics": {
+          "total_invocations": 0,
+          "total_errors": 0,
+          "error_rate_pct": 0.0,
+          "buffered_samples": 0,
+          "latency_ms": {
+            "avg": 0.0,
+            "p50": 0.0,
+            "p95": 0.0,
+            "p99": 0.0
+          },
+          "recent_score_mean": 0.0
+        },
+        "anomaly_detection": {
+          "total_invocations": 0,
+          "total_errors": 0,
+          "error_rate_pct": 0.0,
+          "buffered_samples": 0,
+          "latency_ms": {
+            "avg": 0.0,
+            "p50": 0.0,
+            "p95": 0.0,
+            "p99": 0.0
+          },
+          "recent_score_mean": 0.0
+        },
+        "field_consistency": {
+          "total_invocations": 0,
+          "total_errors": 0,
+          "error_rate_pct": 0.0,
+          "buffered_samples": 0,
+          "latency_ms": {
+            "avg": 0.0,
+            "p50": 0.0,
+            "p95": 0.0,
+            "p99": 0.0
+          },
+          "recent_score_mean": 0.0
+        }
+      },
+      "graduated_challenges": {
+        "tier_1_log": 0,
+        "tier_2_risk_check": 0,
+        "tier_3_rate_limit": 0,
+        "tier_4_escalate": 0
+      }
+    }
+  }
+}

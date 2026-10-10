@@ -1,0 +1,257 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 0;
+  background: #050516;
+  color: #fff;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.workflows-page {
+  min-height: 100vh;
+  padding: 34px clamp(18px, 3vw, 48px) 54px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 16% 8%, rgba(236, 72, 153, 0.09), transparent 28%),
+    radial-gradient(circle at 84% 18%, rgba(168, 85, 247, 0.11), transparent 30%),
+    #050516;
+}
+
+.workflows-header {
+  width: min(1180px, 100%);
+  margin: 0 auto 28px;
+  text-align: center;
+}
+
+.workflows-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: #f9a8d4;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.25em;
+}
+
+.workflows-header h1 {
+  margin: 0;
+  font-size: clamp(30px, 4.5vw, 58px);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+  background: linear-gradient(100deg, #ffffff 10%, #f9a8d4 48%, #c084fc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.workflows-header p {
+  max-width: 760px;
+  margin: 14px auto 0;
+  color: #94a3b8;
+  font-size: clamp(13px, 1.4vw, 16px);
+  line-height: 1.65;
+}
+
+.workflow-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+  width: 100%;
+  min-width: 0;
+  margin: 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  overflow: hidden;
+  background: rgba(4, 4, 18, 0.72);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.36);
+  backdrop-filter: blur(16px);
+}
+
+.workflow-column {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: rgba(5, 5, 22, 0.68);
+}
+
+.workflow-column--issuer {
+  background:
+    radial-gradient(circle at 20% 10%, rgba(236, 72, 153, 0.05), transparent 28%),
+    rgba(5, 5, 22, 0.68);
+}
+
+.workflow-column--verifier {
+  background:
+    radial-gradient(circle at 80% 10%, rgba(168, 85, 247, 0.07), transparent 28%),
+    rgba(5, 5, 22, 0.68);
+}
+
+.workflow-label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-height: 46px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.workflow-label span {
+  color: #f9a8d4;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+}
+
+.workflow-column--verifier .workflow-label span {
+  color: #c084fc;
+}
+
+.workflow-label i {
+  width: 42px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(236, 72, 153, 0.55), rgba(168, 85, 247, 0.1));
+}
+
+.workflow-column--verifier .workflow-label i {
+  background: linear-gradient(90deg, rgba(168, 85, 247, 0.55), rgba(236, 72, 153, 0.1));
+}
+
+.workflow-frame {
+  display: flex;
+  min-width: 0;
+  min-height: 920px;
+  overflow: hidden;
+  background: #050516;
+}
+
+.workflow-frame iframe {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 920px;
+  border: 0;
+  overflow: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  background: #050516;
+  align-self: stretch;
+}
+
+.workflow-frame iframe::-webkit-scrollbar {
+  display: none;
+}
+
+.workflow-divider {
+  position: relative;
+  z-index: 3;
+  grid-column: 2;
+  grid-row: 1;
+  width: 1px;
+  height: 100%;
+  margin: 0 auto;
+  background: linear-gradient(180deg, rgba(236, 72, 153, 0.05), #ec4899 18%, #a855f7 82%, rgba(168, 85, 247, 0.05));
+  box-shadow: 0 0 14px rgba(236, 72, 153, 0.38), 0 0 26px rgba(168, 85, 247, 0.2);
+  pointer-events: none;
+}
+
+.workflow-grid > .workflow-column:first-child {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.workflow-grid > .workflow-column:last-child {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+@media (max-width: 1080px) {
+  .workflow-grid {
+    border-radius: 22px;
+  }
+}
+
+@media (max-width: 760px) {
+  .workflows-page {
+    padding: 25px 13px 36px;
+  }
+
+  .workflows-header {
+    margin-bottom: 20px;
+  }
+
+  .workflows-header h1 {
+    font-size: clamp(30px, 10vw, 46px);
+  }
+
+  .workflows-header p {
+    max-width: 540px;
+  }
+
+  .workflow-grid {
+    grid-template-columns: minmax(0, 1fr);
+    border-radius: 20px;
+  }
+
+  .workflow-grid > .workflow-column:first-child,
+  .workflow-grid > .workflow-column:last-child,
+  .workflow-divider {
+    grid-column: 1;
+  }
+
+  .workflow-grid > .workflow-column:first-child {
+    grid-row: 1;
+  }
+
+  .workflow-divider {
+    grid-row: 2;
+    width: calc(100% - 32px);
+    height: 1px;
+    margin: 0 auto;
+    background: linear-gradient(90deg, rgba(236, 72, 153, 0.05), #ec4899 16%, #a855f7 84%, rgba(168, 85, 247, 0.05));
+    box-shadow: 0 0 14px rgba(236, 72, 153, 0.28), 0 0 26px rgba(168, 85, 247, 0.16);
+  }
+
+  .workflow-grid > .workflow-column:last-child {
+    grid-row: 3;
+  }
+
+  .workflow-frame {
+    min-height: 760px;
+  }
+
+  .workflow-frame iframe {
+    min-height: 760px;
+  }
+
+  .workflow-label {
+    min-height: 42px;
+  }
+}
+
+@media (max-width: 420px) {
+  .workflows-page {
+    padding-inline: 8px;
+  }
+
+  .workflow-frame,
+  .workflow-frame iframe {
+    min-height: 720px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

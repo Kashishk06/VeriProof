@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VeriProof Workflows</title>
+  <link rel="stylesheet" href="workflows.css" />
+</head>
+<body>
+  <main class="workflows-page">
+    <header class="workflows-header">
+      <div class="workflows-eyebrow">◈ END-TO-END TRUST</div>
+      <h1>HOW VERIPROOF WORKS</h1>
+      <p>One connected ecosystem for issuing, protecting, tracking, scanning, authenticating, verifying, and proving documents.</p>
+    </header>
+
+    <section class="workflow-grid" aria-label="VeriProof issuer and verifier workflows">
+      <div class="workflow-column workflow-column--issuer">
+        <div class="workflow-label"><span>ISSUER</span><i></i></div>
+        <div class="workflow-frame">
+          <iframe
+            title="VeriProof Issuer Workflow"
+            src="index.html"
+            data-workflow="issuer"
+            loading="lazy"
+            scrolling="no"
+          ></iframe>
+        </div>
+      </div>
+
+      <div class="workflow-divider" aria-hidden="true"></div>
+
+      <div class="workflow-column workflow-column--verifier">
+        <div class="workflow-label"><span>VERIFIER</span><i></i></div>
+        <div class="workflow-frame">
+          <iframe
+            title="VeriProof Verifier Workflow"
+            src="index1.html"
+            data-workflow="verifier"
+            loading="lazy"
+            scrolling="no"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function sizeWorkflowFrames() {
+      document.querySelectorAll('iframe[data-workflow]').forEach((frame) => {
+        const documentElement = frame.contentDocument?.documentElement;
+        const body = frame.contentDocument?.body;
+        if (!documentElement || !body) return;
+
+        const contentHeight = Math.max(
+          documentElement.scrollHeight,
+          body.scrollHeight,
+          documentElement.offsetHeight,
+          body.offsetHeight
+        );
+
+        frame.style.height = `${Math.ceil(contentHeight)}px`;
+      });
+    }
+
+    document.querySelectorAll('iframe[data-workflow]').forEach((frame) => {
+      frame.addEventListener('load', sizeWorkflowFrames);
+    });
+
+    window.addEventListener('load', sizeWorkflowFrames);
+    window.addEventListener('resize', sizeWorkflowFrames);
+  </script>
+</body>
+</html>

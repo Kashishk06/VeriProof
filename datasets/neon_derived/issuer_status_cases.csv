@@ -1,0 +1,2 @@
+pseudonymized_issuer_id,org_type,country,state_region,issuer_status,status_reason,effective_date_bucket,last_updated_date_bucket,consistency_status,label_provenance,is_neon_derived,extraction_timestamp
+ISSUER_PSEUDO_8c4f5b24eb,Educational Institution,India,MP,ACTIVE,Standard registration,2026-10-09 00:00:00+00,2026-10-09 00:00:00+00,CONSISTENT_ACTIVE,Explicitly stored database organization.status column,True,2026-10-09 22:43:30

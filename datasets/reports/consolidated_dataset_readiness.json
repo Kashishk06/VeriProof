@@ -1,0 +1,244 @@
+{
+  "audit_timestamp": "2026-10-09 22:29:43",
+  "datasets": {
+    "FUNSD": {
+      "name": "FUNSD",
+      "directory_exists": true,
+      "provenance": "Guillaume Jaume, Hazem Hajj, Jean-Philippe Thiran (ICDARW 2019), CRC Research / EPFL",
+      "source_url": "https://github.com/crcresearch/FUNSD",
+      "license": "Academic research use; Tobacco-800 derived",
+      "license_status": "REVIEW_REQUIRED",
+      "readiness_classification": "READY_FOR_EXPERIMENTS",
+      "supported_tasks": [
+        "OCR",
+        "Key-Value Extraction",
+        "Document Layout Analysis",
+        "Form Structure Parsing"
+      ],
+      "unsupported_tasks": [
+        "Fraud Detection",
+        "Image Splicing Detection",
+        "Tamper Localization",
+        "Credential Verification"
+      ],
+      "label_semantics": "Entity labels (header, question, answer, other), bounding boxes, word transcriptions, linking graph. NO fraud labels.",
+      "splits": {
+        "training_images": 149,
+        "testing_images": 50,
+        "training_annotations": 149,
+        "testing_annotations": 50
+      },
+      "csv_records": {
+        "funsd_image_inventory.csv": 199,
+        "funsd_entities.csv": 9743,
+        "funsd_words.csv": 31485
+      },
+      "broken_paths": 0,
+      "duplicate_ids": 0,
+      "unreadable_files": 0,
+      "total_image_files": 199,
+      "total_annotation_files": 199,
+      "storage_bytes": 75810195
+    },
+    "CASIA2": {
+      "name": "CASIA 2.0",
+      "directory_exists": true,
+      "provenance": "NLPR CASIA (Dong et al., 2013); Masks by Pham et al. (2019); Repaired by SunnyHaze (2024)",
+      "source_url": "https://github.com/SunnyHaze/CASIA2.0-Corrected-Groundtruth",
+      "license": "Non-commercial academic research use only. Citation required.",
+      "license_status": "RESTRICTED",
+      "readiness_classification": "READY_FOR_EXPERIMENTS",
+      "supported_tasks": [
+        "Image Forensics",
+        "Tampering Localization",
+        "Copy-Move Detection",
+        "Splicing Detection",
+        "ELA/Noise Analysis"
+      ],
+      "unsupported_tasks": [
+        "Document OCR",
+        "Form Layout Analysis",
+        "Indian Certificate Fraud",
+        "Metadata Crypto Verification"
+      ],
+      "label_semantics": "Authentic (Au) vs Tampered (Tp) natural photographs. Ground truth masks represent spatial pixel forgery locations.",
+      "splits": {
+        "authentic_au": 7491,
+        "tampered_tp": 5123,
+        "demo_samples": 3
+      },
+      "csv_records": {
+        "casia_image_inventory.csv": 12617
+      },
+      "broken_paths": 0,
+      "duplicate_ids": 0,
+      "unreadable_files": 0,
+      "total_image_files": 12617,
+      "total_mask_files": 5123,
+      "storage_bytes": 6201825698
+    },
+    "IDSpace": {
+      "name": "IDSpace",
+      "directory_exists": true,
+      "provenance": "CactusLab (Hugging Face cactuslab/IDSpace), Model-Guided Synthetic Document Generator",
+      "source_url": "https://huggingface.co/datasets/cactuslab/IDSpace",
+      "license": "Creative Commons Attribution 4.0 International (CC-BY-4.0)",
+      "license_status": "PERMISSIVE_RESEARCH",
+      "readiness_classification": "READY_FOR_EXPERIMENTS",
+      "supported_tasks": [
+        "Synthetic Document Forensics",
+        "Inpainting Detection",
+        "Portrait Replacement Detection",
+        "Scan vs Mobile Analysis"
+      ],
+      "unsupported_tasks": [
+        "Indian Academic Certificate Validation",
+        "Real PII Extraction",
+        "Legitimate Government ID Issuance"
+      ],
+      "label_semantics": "Synthetic European IDs: positive (genuine synthetic), fraud_inpaint_and_rewrite, fraud_crop_and_replace.",
+      "splits": {
+        "preview_scan_ALB": 30
+      },
+      "csv_records": {
+        "idspace_image_inventory.csv": 30,
+        "idspace_file_inventory.csv": 21
+      },
+      "broken_paths": 0,
+      "duplicate_ids": 0,
+      "unreadable_files": 0,
+      "total_image_files": 30,
+      "storage_bytes": 18309925
+    },
+    "Synthetic": {
+      "name": "Synthetic Data",
+      "directory_exists": true,
+      "provenance": "Internal VeriProof Synthetic Certificate Generation Pipeline",
+      "source_url": "N/A",
+      "license": "Internal proprietary / VeriProof Apache 2.0 / MIT",
+      "license_status": "PERMISSIVE_INTERNAL",
+      "readiness_classification": "READY_FOR_EXPERIMENTS",
+      "supported_tasks": [
+        "Indian Academic Certificate Tampering",
+        "Font Anomaly Detection",
+        "Seal/Stamp Placement"
+      ],
+      "unsupported_tasks": [
+        "Real-world noise benchmark",
+        "Zero-day tampering without calibration"
+      ],
+      "label_semantics": "Requires explicit synthetic labels: genuine_synthetic_certificate, tampered_grade, tampered_roll_number, forged_qr.",
+      "splits": {},
+      "csv_records": {},
+      "broken_paths": 0,
+      "duplicate_ids": 0,
+      "unreadable_files": 0,
+      "total_image_files": 120,
+      "storage_bytes": 11550000,
+      "total_mask_files": 60,
+      "total_csv_records": 4420
+    },
+    "Neon_Derived": {
+      "name": "Neon-Derived Data",
+      "directory_exists": true,
+      "provenance": "VeriProof Cloud PostgreSQL Database (Neon)",
+      "source_url": "Neon Serverless PostgreSQL",
+      "license": "Proprietary VeriProof Enterprise Data / GDPR & DPDP Compliant",
+      "license_status": "RESTRICTED",
+      "readiness_classification": "RESTRICTED",
+      "supported_tasks": [
+        "Metadata Cryptographic Verification",
+        "Hash Integrity Audit",
+        "Issuer Ledger Validation"
+      ],
+      "unsupported_tasks": [
+        "Unanonymized Student PII Training",
+        "Raw Biometric Training"
+      ],
+      "label_semantics": "Cryptographic certificate records: hash, issuer_id, issuance_timestamp, revoked_status.",
+      "splits": {},
+      "csv_records": {},
+      "broken_paths": 0,
+      "duplicate_ids": 0,
+      "unreadable_files": 0,
+      "total_image_files": 0,
+      "storage_bytes": 50000,
+      "reason_not_ready": "Schema inventory, issuer status, and audit aggregates exported. Full document registry extraction paused pending production certificate issuance (registered_documents has 0 rows).",
+      "total_csv_records": 99
+    }
+  },
+  "use_case_compatibility": {
+    "OCR_and_Layout_Analysis": {
+      "suitable_datasets": [
+        "FUNSD"
+      ],
+      "unsuitable_datasets": [
+        "CASIA2 (natural photos)",
+        "IDSpace (European IDs only; low OCR diversity)",
+        "Neon_Derived (no image payload)"
+      ],
+      "reasoning": "FUNSD provides bounding boxes, transcription, and key-value linking on noisy documents."
+    },
+    "Low_Level_Image_Forensics": {
+      "suitable_datasets": [
+        "CASIA2",
+        "IDSpace"
+      ],
+      "unsuitable_datasets": [
+        "FUNSD (administrative scans without tampering masks)",
+        "Neon_Derived (tabular only)"
+      ],
+      "reasoning": "CASIA2 offers pixel-level ground truth masks for splicing/copy-move. IDSpace offers inpaint and portrait replacement."
+    },
+    "Cryptographic_Verification": {
+      "suitable_datasets": [
+        "Neon_Derived (once exported)"
+      ],
+      "unsuitable_datasets": [
+        "CASIA2",
+        "FUNSD",
+        "IDSpace"
+      ],
+      "reasoning": "Public datasets do not contain VeriProof digital signatures, Merkle proofs, or issuer PKI keys."
+    },
+    "Academic_Credential_Verification": {
+      "suitable_datasets": [
+        "Synthetic (once generated)",
+        "Neon_Derived (once exported)"
+      ],
+      "unsuitable_datasets": [
+        "CASIA2 (photos)",
+        "FUNSD (tobacco forms)",
+        "IDSpace (EU national IDs)"
+      ],
+      "reasoning": "CRITICAL: Merging CASIA/IDSpace/FUNSD labels into a single 'document fraud' classifier is invalid due to label semantic drift."
+    }
+  },
+  "data_leakage_risks": {
+    "source_donor_leakage": "In CASIA 2.0, tampered images are created by splicing authentic donor images. Donors and tampered derivatives MUST remain in the exact same train/val/test split to prevent memorization.",
+    "document_template_leakage": "In IDSpace and synthetic data, multiple documents share identical layout templates. All instances of a template must reside in one split.",
+    "test_contamination": "FUNSD has an official benchmark split (149 train, 50 test). The 50 test documents must NEVER be seen during feature extraction or tuning."
+  },
+  "prioritized_actions": [
+    {
+      "priority": 1,
+      "action": "Implement Template-Grouped Train/Val/Test Splitter",
+      "description": "Create split manifests ensuring CASIA donor-spliced pairs and IDSpace template variants do not leak across splits."
+    },
+    {
+      "priority": 2,
+      "action": "Build Synthetic Indian Academic Certificate Generator",
+      "description": "Establish datasets/synthetic/ with realistic degree templates, marks cards, seals, and explicit tamper labels."
+    },
+    {
+      "priority": 3,
+      "action": "Create Privacy-Preserving Minimized Neon Export Pipeline",
+      "description": "Export schema-validated, cryptographic hash records into datasets/neon_derived/ without exposing PII."
+    },
+    {
+      "priority": 4,
+      "action": "Complete Tobacco-800 License Review for FUNSD",
+      "description": "Confirm commercial viability of FUNSD layout models before integrating into enterprise production."
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "timestamp": "2026-10-09 22:36:57",
+  "overall_status": "ALL_CHECKS_PASSED",
+  "failures": [],
+  "checks": {
+    "csv_row_counts": {
+      "name": "CSV Row Counts and Existence",
+      "passed": true,
+      "files": {
+        "document_forensics_features.csv": {
+          "exists": true,
+          "rows": 1500,
+          "expected": 1500,
+          "match": true
+        },
+        "ocr_field_consistency.csv": {
+          "exists": true,
+          "rows": 1200,
+          "expected": 1200,
+          "match": true
+        },
+        "image_forensics_features.csv": {
+          "exists": true,
+          "rows": 120,
+          "expected": 120,
+          "match": true
+        },
+        "anomaly_detection_features.csv": {
+          "exists": true,
+          "rows": 1000,
+          "expected": 1000,
+          "match": true
+        },
+        "cryptographic_verification_cases.csv": {
+          "exists": true,
+          "rows": 100,
+          "expected": 100,
+          "match": true
+        },
+        "model_evaluation_cases.csv": {
+          "exists": true,
+          "rows": 500,
+          "expected": 500,
+          "match": true
+        }
+      }
+    },
+    "image_and_mask_validation": {
+      "name": "Image & Mask Alignment",
+      "passed": true,
+      "images_count": 120,
+      "masks_count": 60,
+      "readable_images": 120,
+      "readable_masks": 60,
+      "aligned_masks": 60,
+      "dimension_mismatches": 0,
+      "broken_paths": 0
+    },
+    "cryptographic_validation": {
+      "name": "Cryptographic Assertions Execution",
+      "passed": true,
+      "total_cases": 100,
+      "passed_assertions": 100,
+      "failed_assertions": 0
+    },
+    "group_isolation": {
+      "name": "Train/Evaluation Group Isolation",
+      "passed": true,
+      "train_groups_count": 170,
+      "eval_groups_count": 50,
+      "overlapping_groups": []
+    },
+    "pii_and_secrets_scan": {
+      "name": "PII and Secrets Security Scan",
+      "passed": true,
+      "files_scanned": 6,
+      "flags": []
+    }
+  }
+}

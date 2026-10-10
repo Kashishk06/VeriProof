@@ -1,0 +1,20 @@
+{
+  "dataset": "CASIA 2.0 Corrected Groundtruth",
+  "source_url": "https://github.com/SunnyHaze/CASIA2.0-Corrected-Groundtruth",
+  "original_casia2_portal": "http://forensics.idealtest.org/",
+  "download_date": "2026-10-09",
+  "archive_name": "CASIA2.0_revised_corrected.zip",
+  "archive_size_bytes": 2677393245,
+  "archive_sha256": "d9e6d648a683f4c4e4fa87067d9bd0790182769003b2805acd03af1b037ec9f5",
+  "authentic_images_count": 7491,
+  "tampered_images_count": 5123,
+  "groundtruth_masks_count": 5123,
+  "baseline_demo_records": 3,
+  "inventory_rows_total": 12617,
+  "pair_mapping_coverage": "100%",
+  "dimension_match_rate": "100%",
+  "license": "Research use only. Cite Jing Dong et al. (2013) and Nam Thanh Pham et al. (2019)",
+  "IMPORTANT_DISCLAIMER": "CASIA 2.0 labels 'authentic'/'tampered' refer to general photographic manipulation (splicing, copy-move). This is NOT certificate or academic credential fraud data.",
+  "provenance_notes": "Ground-truth masks were reconstructed algorithmically by Nam Thanh Pham et al. (2019) and corrected for resolution/rotation noises by SunnyHaze (2024).",
+  "data_origin": "public"
+}

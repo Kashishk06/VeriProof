@@ -1,0 +1,53 @@
+{
+  "project": "VeriProof Secure Digital Document Verification Platform",
+  "generated_at": "2026-10-10T02:30:00Z",
+  "implementation_status": "COMPLETED",
+  "overall_classification": "PASS",
+  "test_metrics": {
+    "total_backend_tests_executed": 134,
+    "total_backend_tests_passed": 134,
+    "total_backend_tests_failed": 0,
+    "pass_rate_percentage": 100.0,
+    "frontend_build_status": "SUCCESS",
+    "frontend_modules_transformed": 2940
+  },
+  "cryptographic_verification": {
+    "hash_algorithm": "SHA-256",
+    "signature_algorithm": "ECDSA-P256-SHA256",
+    "signing_order_invariant": "QR_EMBEDDED_BEFORE_HASH_AND_SIGNATURE",
+    "tamper_detection_rate": 100.0,
+    "copied_qr_rejection_rate": 100.0
+  },
+  "qr_embedding_and_decoding": {
+    "pdf_placement": "BOTTOM_RIGHT_FINAL_PAGE",
+    "image_placement": "BOTTOM_RIGHT",
+    "background_padding": "WHITE_RECTANGLE_PREVENT_BLEED",
+    "error_correction_level": "LEVEL_M",
+    "physical_scan_calibration_stages": 12,
+    "physical_scan_decode_success_rate": 100.0,
+    "average_decode_latency_ms": 42.9
+  },
+  "email_dispatch": {
+    "service_status": "IMPLEMENTED",
+    "attachment_type": "FINAL_QR_BEARING_ARTIFACT",
+    "status_semantics": [
+      "NOT_CONFIGURED",
+      "QUEUED",
+      "SENDING",
+      "PROVIDER_ACCEPTED",
+      "DELIVERED",
+      "FAILED",
+      "BOUNCED"
+    ],
+    "rbac_enforced": true
+  },
+  "key_artifacts": [
+    "VERIPROOF_QR_IMPLEMENTATION_REPORT.md",
+    "VERIPROOF_QR_API_TEST_REPORT.md",
+    "VERIPROOF_QR_CRYPTOGRAPHIC_VALIDATION_REPORT.md",
+    "VERIPROOF_QR_PHYSICAL_SCAN_CALIBRATION_REPORT.md",
+    "VERIPROOF_EMAIL_DELIVERY_REPORT.md",
+    "VERIPROOF_QR_E2E_TEST_REPORT.md",
+    "VERIPROOF_QR_IMPLEMENTATION_RESULTS.json"
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "step": "STEP 6A: DATASET SPLITTING AND LEAKAGE VALIDATION",
+  "audit_timestamp": "2026-10-09 23:10:00",
+  "master_random_seed": 20261009,
+  "verdict": "PASSED_WITH_ZERO_LEAKAGE",
+  "datasets": {
+    "CASIA2": {
+      "task": "Image manipulation detection & localization",
+      "manifest": "datasets/splits/casia2_splits.csv",
+      "total_records": 12617,
+      "splits": {
+        "train": {
+          "authentic": 5477,
+          "total": 9877,
+          "tampered": 4400
+        },
+        "val": {
+          "authentic": 1402,
+          "total": 1892,
+          "tampered": 490
+        },
+        "test": {
+          "authentic": 612,
+          "total": 845,
+          "tampered": 233
+        },
+        "demo_holdout": {
+          "unknown": 3,
+          "total": 3
+        }
+      },
+      "donor_clusters_count": 6523,
+      "donor_group_overlap": {
+        "train_val": 0,
+        "train_test": 0,
+        "val_test": 0
+      },
+      "unresolved_donor_mappings": 0,
+      "license_status": "RESTRICTED (Academic non-commercial only)"
+    },
+    "IDSpace": {
+      "task": "Synthetic ID manipulation experiment",
+      "manifest": "datasets/splits/idspace_splits.csv",
+      "total_records": 30,
+      "splits": {
+        "train": {
+          "positive": 6,
+          "total": 18,
+          "fraud_inpaint_and_rewrite": 6,
+          "fraud_crop_and_replace": 6
+        },
+        "val": {
+          "positive": 2,
+          "total": 6,
+          "fraud_inpaint_and_rewrite": 2,
+          "fraud_crop_and_replace": 2
+        },
+        "test": {
+          "positive": 2,
+          "total": 6,
+          "fraud_inpaint_and_rewrite": 2,
+          "fraud_crop_and_replace": 2
+        }
+      },
+      "template_grouping": "Stratified 3-class distribution with template ID grouping",
+      "license_status": "READY_FOR_EXPERIMENTS (CC-BY-4.0)"
+    },
+    "FUNSD": {
+      "task": "Form OCR & spatial layout understanding",
+      "manifest": "datasets/splits/funsd_splits.csv",
+      "total_records": 199,
+      "splits": {
+        "train": 119,
+        "val": 30,
+        "test": 50
+      },
+      "official_test_sequestered": true,
+      "test_records_count": 50,
+      "license_status": "REVIEW_REQUIRED (Tobacco-800 research terms)"
+    },
+    "Synthetic_Image_Forensics": {
+      "task": "Academic certificate tampering localization",
+      "manifest": "datasets/splits/synthetic_image_forensics_splits.csv",
+      "total_records": 120,
+      "splits": {
+        "train": {
+          "authentic": 42,
+          "total": 84,
+          "tampered": 42
+        },
+        "val": {
+          "authentic": 9,
+          "total": 18,
+          "tampered": 9
+        },
+        "test": {
+          "authentic": 9,
+          "total": 18,
+          "tampered": 9
+        }
+      },
+      "source_groups_total": 20,
+      "source_group_allocation": {
+        "train": 14,
+        "val": 3,
+        "test": 3
+      },
+      "source_group_overlap": {
+        "train_val": 0,
+        "train_test": 0,
+        "val_test": 0
+      },
+      "license_status": "READY_FOR_EXPERIMENTS (Internal VeriProof)"
+    },
+    "Synthetic_OCR": {
+      "task": "OCR transcription & consistency validation",
+      "manifest": "datasets/splits/synthetic_ocr_splits.csv",
+      "total_records": 1200,
+      "splits": {
+        "train": {
+          "CONSISTENT": 88,
+          "total": 140,
+          "BENIGN_OCR_NOISE": 30,
+          "INCONSISTENT_SUSPECT_TAMPERING": 11,
+          "AMBIGUOUS": 11
+        },
+        "val": {
+          "CONSISTENT": 23,
+          "total": 30,
+          "INCONSISTENT_SUSPECT_TAMPERING": 3,
+          "AMBIGUOUS": 3,
+          "BENIGN_OCR_NOISE": 1
+        },
+        "test": {
+          "CONSISTENT": 635,
+          "total": 1030,
+          "BENIGN_OCR_NOISE": 201,
+          "INCONSISTENT_SUSPECT_TAMPERING": 105,
+          "AMBIGUOUS": 89
+        }
+      },
+      "source_groups_total": 20,
+      "source_group_allocation": {
+        "train": 14,
+        "val": 3,
+        "test": 3
+      },
+      "license_status": "READY_FOR_EXPERIMENTS (Internal VeriProof)"
+    },
+    "Synthetic_Anomaly": {
+      "task": "Behavioral anomaly detection",
+      "manifest": "datasets/splits/synthetic_anomaly_splits.csv",
+      "total_records": 1000,
+      "splits": {
+        "train": {
+          "NORMAL_VERIFICATION": 240,
+          "total": 350,
+          "BENIGN_HIGH_VOLUME": 69,
+          "SUSPICIOUS_BRUTE_FORCE": 22,
+          "ANOMALOUS_ISSUER_STATUS": 19
+        },
+        "val": {
+          "BENIGN_HIGH_VOLUME": 13,
+          "total": 75,
+          "NORMAL_VERIFICATION": 57,
+          "SUSPICIOUS_BRUTE_FORCE": 5
+        },
+        "test": {
+          "NORMAL_VERIFICATION": 417,
+          "total": 575,
+          "BENIGN_HIGH_VOLUME": 102,
+          "ANOMALOUS_ISSUER_STATUS": 27,
+          "SUSPICIOUS_BRUTE_FORCE": 29
+        }
+      },
+      "entity_groups_total": 20,
+      "entity_group_allocation": {
+        "train": 14,
+        "val": 3,
+        "test": 3
+      },
+      "license_status": "READY_FOR_EXPERIMENTS (Internal VeriProof)"
+    },
+    "Synthetic_Crypto": {
+      "task": "Cryptographic signature verification",
+      "manifest": "datasets/splits/synthetic_crypto_splits.csv",
+      "total_records": 100,
+      "test_vectors_count": 100,
+      "license_status": "READY_FOR_EXPERIMENTS (Internal VeriProof)"
+    }
+  },
+  "integrity_checks": {
+    "missing_files_count": 0,
+    "total_referenced_files": 12966,
+    "all_paths_exist": true
+  }
+}
