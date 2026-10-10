@@ -1,20 +1,9 @@
-import os
-import sys
-
-_CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-_BACKEND_DIR = os.path.dirname(_CURRENT_DIR)
-_ROOT_DIR = os.path.dirname(_BACKEND_DIR)
-for _p in (_BACKEND_DIR, _ROOT_DIR, os.path.join(_ROOT_DIR, "ml")):
-    if _p not in sys.path:
-        sys.path.insert(0, _p)
-
 import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import settings
 from app.api.v1.router import api_router
-
 
 # Configure basic logging
 logging.basicConfig(
@@ -30,19 +19,14 @@ app = FastAPI(
 )
 
 # Set up CORS
-origins = [str(origin) for origin in settings.CORS_ORIGINS] if settings.CORS_ORIGINS else []
-for _default in ["http://localhost:5173", "http://localhost:3000", "http://localhost:4173"]:
-    if _default not in origins:
-        origins.append(_default)
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_origin_regex=r"https://.*\.vercel\.app|http://localhost:\d+",
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+if settings.CORS_ORIGINS:
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=[str(origin) for origin in settings.CORS_ORIGINS],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
 @app.get("/", tags=["Root"])
 def root_endpoint():

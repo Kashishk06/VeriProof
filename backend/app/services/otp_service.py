@@ -86,7 +86,7 @@ class OTPService:
                 detail="Too many OTP requests for this email address. Please try again in an hour.",
             )
 
-        # 3. Verify SMTP configuration
+        # 3. Verify SMTP configuration (Never simulate in production / unconfigured environments)
         is_configured = bool(
             settings.SMTP_HOST
             and settings.SMTP_HOST.strip()
@@ -96,9 +96,14 @@ class OTPService:
         # In automated test mode (TESTING=True), dispatch can be mocked in tests
         is_test_mode = getattr(settings, "TESTING", False)
 
+        if not is_configured and not is_test_mode:
+            raise HTTPException(
+                status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+                detail="Email service is not configured. Backend mail gateway (SMTP) is inactive.",
+            )
+
         # 4. Generate cryptographically secure 6-digit OTP
         otp_code = "".join(secrets.choice("0123456789") for _ in range(6))
-
 
         # 5. Dispatch email via real SMTP provider
         if is_configured:
@@ -162,60 +167,49 @@ class OTPService:
                 msg.attach(MIMEText(text_content, "plain"))
                 msg.attach(MIMEText(html_content, "html"))
 
-                port = int(settings.SMTP_PORT or 587)
+                port = int(settings.SMTP_PORT)
                 host = settings.SMTP_HOST.strip()
-                use_ssl = (port == 465) or getattr(settings, "SMTP_USE_SSL", False)
                 use_tls = settings.SMTP_USE_TLS if settings.SMTP_USE_TLS is not None else settings.SMTP_TLS
 
-                delivered = False
-                # Attempt primary connection
-                try:
-                    if use_ssl:
-                        context = ssl.create_default_context()
-                        with smtplib.SMTP_SSL(host, port, timeout=8, context=context) as server:
-                            if settings.SMTP_USER and settings.SMTP_PASSWORD:
-                                server.login(settings.SMTP_USER, settings.SMTP_PASSWORD)
-                            server.send_message(msg)
-                            delivered = True
-                    else:
-                        with smtplib.SMTP(host, port, timeout=8) as server:
-                            if use_tls:
-                                context = ssl.create_default_context()
-                                server.starttls(context=context)
-                            if settings.SMTP_USER and settings.SMTP_PASSWORD:
-                                server.login(settings.SMTP_USER, settings.SMTP_PASSWORD)
-                            server.send_message(msg)
-                            delivered = True
-                except (smtplib.SMTPConnectError, socket.timeout, TimeoutError, ConnectionRefusedError, OSError) as conn_err:
-                    # If 587 failed, try fallback on port 465 SSL
-                    logger.warning("Primary SMTP on %s:%s failed (%s). Trying fallback port 465 SSL...", host, port, conn_err)
-                    try:
-                        context = ssl.create_default_context()
-                        with smtplib.SMTP_SSL(host, 465, timeout=8, context=context) as server:
-                            if settings.SMTP_USER and settings.SMTP_PASSWORD:
-                                server.login(settings.SMTP_USER, settings.SMTP_PASSWORD)
-                            server.send_message(msg)
-                            delivered = True
-                    except Exception as fallback_err:
-                        logger.error("SMTP fallback delivery failed: %s", fallback_err)
-                        # Graceful fallback: do not block user onboarding
-                        delivered = False
+                if port == 465:
+                    context = ssl.create_default_context()
+                    with smtplib.SMTP_SSL(host, port, timeout=10, context=context) as server:
+                        if settings.SMTP_USER and settings.SMTP_PASSWORD:
+                            server.login(settings.SMTP_USER, settings.SMTP_PASSWORD)
+                        server.send_message(msg)
+                else:
+                    with smtplib.SMTP(host, port, timeout=10) as server:
+                        if use_tls:
+                            context = ssl.create_default_context()
+                            server.starttls(context=context)
+                        if settings.SMTP_USER and settings.SMTP_PASSWORD:
+                            server.login(settings.SMTP_USER, settings.SMTP_PASSWORD)
+                        server.send_message(msg)
 
             except smtplib.SMTPAuthenticationError:
-                logger.error("SMTP Authentication Error: check SMTP_USER / App Password")
-                delivered = False
+                raise HTTPException(
+                    status_code=status.HTTP_502_BAD_GATEWAY,
+                    detail="Email provider authentication failed. Please verify SMTP_USER and SMTP_PASSWORD (for Gmail, ensure a 16-character App Password is used).",
+                )
             except smtplib.SMTPRecipientsRefused:
-                logger.error("SMTP Recipients Refused for %s", email_clean)
-                delivered = False
+                raise HTTPException(
+                    status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                    detail="The recipient email address was refused by the email provider.",
+                )
+            except (smtplib.SMTPConnectError, socket.timeout, TimeoutError, ConnectionRefusedError, OSError):
+                raise HTTPException(
+                    status_code=status.HTTP_502_BAD_GATEWAY,
+                    detail="Unable to establish a connection to the email server. Please check SMTP_HOST and SMTP_PORT.",
+                )
             except Exception as exc:
-                logger.error("Failed to dispatch verification code via email provider: %s", exc)
-                delivered = False
+                raise HTTPException(
+                    status_code=status.HTTP_502_BAD_GATEWAY,
+                    detail=f"Failed to dispatch verification code via email provider: {str(exc)}",
+                )
 
         # 6. Hash OTP with Argon2id and store securely (never plaintext)
         hashed_otp = hash_password(otp_code)
         self._increment_hourly_rate_limit(email_clean, now)
-
-        is_demo = not is_configured or not delivered
 
         self._store[key] = {
             "otp_hash": hashed_otp,
@@ -223,22 +217,15 @@ class OTPService:
             "attempts_remaining": 5,
             "last_sent_at": now,
             "is_verified": False,
-            "_test_code": otp_code if (is_test_mode or is_demo) else None,
-            "_is_demo": is_demo,
+            # In test mode only, store code for assertion
+            "_test_code": otp_code if is_test_mode else None,
         }
-
-        if delivered:
-            resp_msg = f"Verification code successfully sent to {email_clean}. Please check your inbox."
-        else:
-            resp_msg = f"Verification code: {otp_code} (Cloud email delivery timed out; enter code directly to verify)."
 
         return {
-            "message": resp_msg,
+            "message": f"Verification code successfully dispatched to {email_clean}.",
             "cooldown_seconds": 60,
             "expires_in_seconds": 600,
-            "dev_otp": otp_code if is_demo else None,
         }
-
 
     def verify_otp(self, email: str, otp: str, workflow: str) -> Dict[str, Any]:
         """
@@ -278,14 +265,7 @@ class OTPService:
                 detail="Maximum verification attempts exceeded. This code has been invalidated.",
             )
 
-        entered_otp = otp.strip()
-        is_demo_mode = record.get("_is_demo", False)
-        test_code = record.get("_test_code")
-        is_valid = verify_password(entered_otp, record["otp_hash"])
-        if not is_valid and is_demo_mode and (entered_otp == test_code or entered_otp == "123456"):
-            is_valid = True
-
-        if not is_valid:
+        if not verify_password(otp.strip(), record["otp_hash"]):
             record["attempts_remaining"] -= 1
             remaining = record["attempts_remaining"]
             if remaining <= 0:
@@ -301,7 +281,6 @@ class OTPService:
 
         # Mark as single-use verified
         record["is_verified"] = True
-
 
         # Generate cryptographically signed verification token
         token = create_email_verification_token(email_clean, workflow)

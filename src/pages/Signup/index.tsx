@@ -434,24 +434,19 @@ export const SignupPage: React.FC = () => {
     const emailToSend = signupEmail.trim().toLowerCase();
 
     try {
-      const data = await apiRequest<{ cooldown_seconds?: number; message?: string; dev_otp?: string }>('/auth/send-otp', {
+      const data = await apiRequest<{ cooldown_seconds?: number }>('/auth/send-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: emailToSend, workflow: `${selectedRole}_signup` }),
       });
       setOtpSent(true);
       setOtpCooldown(data.cooldown_seconds || 60);
-      if (data.dev_otp) {
-        setOtpValue(data.dev_otp);
-      }
-      const msg = data.message || `Verification OTP has been sent to ${emailToSend}. Please check your inbox.`;
       setOtpStatusMsg({
         type: 'success',
-        text: msg,
+        text: `Verification OTP has been sent to ${emailToSend}. Please check your inbox.`,
       });
-      success('OTP Sent', msg);
+      success('OTP Sent', `Verification code sent to ${emailToSend}`);
     } catch (requestError) {
-
       // Network/service failure: Do NOT simulate success
       const msg = requestError instanceof Error ? requestError.message : 'Email service unavailable. Please check backend and SMTP configuration.';
       setOtpStatusMsg({ type: 'error', text: msg });
